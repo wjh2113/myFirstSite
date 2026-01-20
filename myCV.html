@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王俊 - AI产品经理 | 数字化转型专家</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;500;600&display=swap">
+    <style>
+        :root {
+            --primary-blue: #0a1a3a;
+            --secondary-blue: #1a3a6e;
+            --accent-blue: #2a5caa;
+            --light-blue: #e6f0ff;
+            --white: #ffffff;
+            --gray: #f5f7fa;
+            --dark-gray: #333;
+            --highlight: #00d4ff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a1a5a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 左侧 - 个人信息和工作经历 */
+        .left-panel {
+            width: 35%;
+            padding: 30px;
+            background-color: rgba(10, 26, 58, 0.9);
+            border-right: 1px solid rgba(42, 92, 170, 0.3);
+            z-index: 2;
+            overflow-y: auto;
+        }
+        
+        /* 中间 - 业务能力展示 */
+        .center-panel {
+            width: 35%;
+            padding: 30px;
+            z-index: 2;
+            overflow-y: auto;
+        }
+        
+        /* 右侧 - AI对话 */
+        .right-panel {
+            width: 30%;
+            padding: 30px;
+            background-color: rgba(10, 26, 58, 0.85);
+            border-left: 1px solid rgba(42, 92, 170, 0.3);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* 科技背景元素 */
+        .tech-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .grid-line {
+            position: absolute;
+            background: rgba(42, 92, 170, 0.1);
+        }
+        
+        .grid-line.horizontal {
+            width: 100%;
+            height: 1px;
+        }
+        
+        .grid-line.vertical {
+            height: 100%;
+            width: 1px;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+        
+        /* 标题样式 */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--highlight), var(--accent-blue));
+            border-radius: 2px;
+        }
+        
+        /* 个人信息区域 */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        
+        .avatar i {
+            font-size: 50px;
+            color: var(--white);
+        }
+        
+        .profile-info h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--white), var(--highlight));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .profile-info .title {
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-bottom: 10px;
+        }
+        
+        /* 时间线样式 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--highlight));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(26, 58, 110, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-left-color: var(--highlight);
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--highlight);
+            box-shadow: 0 0 10px var(--highlight);
+        }
+        
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--highlight);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+        
+        .timeline-data {
+            font-size: 0.95rem;
+            color: #ccc;
+        }
+        
+        /* 核心能力卡片 */
+        .skill-card {
+            background-color: rgba(26, 58, 110, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(42, 92, 170, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--highlight);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--highlight));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .skill-icon i {
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        
+        .skill-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .skill-content {
+            color: #ccc;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .skill-tag {
+            background-color: rgba(42, 92, 170, 0.3);
+            color: var(--light-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(42, 92, 170, 0.5);
+        }
+        
+        /* AI对话区域 */
+        .ai-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .ai-header h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .ai-header p {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        .ai-container {
+            flex-grow: 1;
+            background-color: rgba(10, 20, 40, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(42, 92, 170, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ai-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .ai-placeholder i {
+            font-size: 3rem;
+            color: var(--highlight);
+            margin-bottom: 20px;
+        }
+        
+        .ai-placeholder h4 {
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .ai-placeholder p {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        
+        .ai-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .left-panel, .center-panel, .right-panel {
+                width: 100%;
+                height: auto;
+            }
+            
+            .right-panel {
+                height: 700px;
+            }
+        }
+        
+        /* 底部信息 */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(42, 92, 170, 0.3);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        .contact-item i {
+            margin-right: 8px;
+            color: var(--highlight);
+        }
+    </style>
+</head>
+<body>
+    <div class="tech-bg" id="tech-bg"></div>
+    
+    <div class="container">
+        <!-- 左侧面板：个人信息和工作经历 -->
+        <div class="left-panel">
+            <!-- 个人信息 -->
+            <div class="profile-header">
+                <div class="avatar">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <div class="profile-info">
+                    <h1>王俊</h1>
+                    <div class="title">AI产品经理 | 数字化转型专家</div>
+                    <p>14年+数字化转型与营销解决方案经验</p>
+                </div>
+            </div>
+            
+            <!-- 工作经历时间线 -->
+            <h2 class="section-title">工作经历</h2>
+            <div class="timeline">
+                <!-- 时间线项目将动态生成 -->
+            </div>
+        </div>
+        
+        <!-- 中间面板：业务能力展示 -->
+        <div class="center-panel">
+            <h2 class="section-title">核心优势</h2>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="skill-title">AI+数字化解决方案</div>
+                </div>
+                <div class="skill-content">
+                    14年+数字化转型咨询、系统实施及项目管理经验，精通售前解决方案设计与客户高层汇报。具备从业务洞察到技术落地的全流程能力。
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">AI产品规划</span>
+                    <span class="skill-tag">数字化转型</span>
+                    <span class="skill-tag">售前解决方案</span>
+                    <span class="skill-tag">项目管理</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="skill-title">行业洞察与整合</div>
+                </div>
+                <div class="skill-content">
+                    熟悉零售、制造、高科技等行业营销数据产品解决方案，具备多行业跨域整合能力；擅长基于客户业务场景完成整体业务蓝图设计。
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">零售行业</span>
+                    <span class="skill-tag">制造业</span>
+                    <span class="skill-tag">高科技</span>
+                    <span class="skill-tag">跨域整合</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="skill-title">技术架构能力</div>
+                </div>
+                <div class="skill-content">
+                    熟悉SAP S4、SAP CRM、自研平台设计与落地、Java技术栈；具备TOGAF企业架构设计能力，熟悉Archmate等建模工具。
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">SAP架构</span>
+                    <span class="skill-tag">TOGAF</span>
+                    <span class="skill-tag">Java技术栈</span>
+                    <span class="skill-tag">企业架构</span>
+                </div>
+            </div>
+            
+            <h2 class="section-title" style="margin-top: 40px;">项目成果</h2>
+            <div class="skill-card">
+                <div class="skill-header">
+                    <div class="skill-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="skill-title">项目交付与客户</div>
+                </div>
+                <div class="skill-content">
+                    <p>主导或参与10+个大型数字化项目的售前工作，成功交付11个项目，覆盖零售、快消、制造、汽车、医疗、高科技等多个行业。</p>
+                    <p style="margin-top: 10px;"><strong>合作客户：</strong>九牧、广汽丰田、阳光电源、紫光集团、蒙牛、迈瑞等知名企业。</p>
+                </div>
+            </div>
+            
+            <!-- 联系信息 -->
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>17701367566</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>sapwangjun@hotmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>河南信阳</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-certificate"></i>
+                    <span>PMP/SAP PA认证</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧面板：AI对话 -->
+        <div class="right-panel">
+            <div class="ai-header">
+                <h3><i class="fas fa-robot"></i> AI助手对话</h3>
+                <p>与我交流，了解我的专业能力与项目经验</p>
+            </div>
+            
+            <div class="ai-container">
+                <!-- AI对话iframe -->
+                <iframe 
+                    src="http://1f54fe86.r25.cpolar.top/chatbot/B3hs6QTKIhBIb1Rl"
+                    class="ai-iframe"
+                    frameborder="0"
+                    allow="microphone"
+                    id="ai-chat-frame">
+                </iframe>
+                
+                <!-- 如果iframe无法加载，显示备用内容 -->
+                <div class="ai-placeholder" id="ai-placeholder">
+                    <i class="fas fa-robot"></i>
+                    <h4>AI对话助手</h4>
+                    <p>在这里可以与我进行对话，了解我的专业技能和项目经验。</p>
+                    <p>如果对话界面未能正常加载，请检查网络连接或确保本地服务器正在运行。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 生成科技背景网格和浮动元素
+        function createTechBackground() {
+            const techBg = document.getElementById('tech-bg');
+            
+            // 创建网格线
+            for (let i = 0; i < 20; i++) {
+                const horizontalLine = document.createElement('div');
+                horizontalLine.className = 'grid-line horizontal';
+                horizontalLine.style.top = `${i * 5}%`;
+                techBg.appendChild(horizontalLine);
+                
+                const verticalLine = document.createElement('div');
+                verticalLine.className = 'grid-line vertical';
+                verticalLine.style.left = `${i * 5}%`;
+                techBg.appendChild(verticalLine);
+            }
+            
+            // 创建浮动元素
+            for (let i = 0; i < 15; i++) {
+                const floatingElement = document.createElement('div');
+                floatingElement.className = 'floating-element';
+                const size = Math.random() * 100 + 20;
+                floatingElement.style.width = `${size}px`;
+                floatingElement.style.height = `${size}px`;
+                floatingElement.style.left = `${Math.random() * 100}%`;
+                floatingElement.style.top = `${Math.random() * 100}%`;
+                floatingElement.style.animationDuration = `${Math.random() * 20 + 15}s`;
+                floatingElement.style.animationDelay = `${Math.random() * 5}s`;
+                techBg.appendChild(floatingElement);
+            }
+        }
+        
+        // 工作经历数据
+        const workExperiences = [
+            {
+                date: "2019/07 - 2025/11",
+                title: "普华永道 - 数字化转型咨询高级经理",
+                data: "负责营销数字化项目的售前支持与解决方案设计，参与5个项目的售前工作，并成功交付11个项目；主导多个大型企业营销数字化蓝图规划、数据平台搭建与系统实施。"
+            },
+            {
+                date: "2016/11 - 2019/06",
+                title: "印孚瑟斯管理咨询 - 营销数字化咨询顾问",
+                data: "参与营销项目实施与售前支持，具备跨行业营销解决方案设计能力。"
+            },
+            {
+                date: "2014/05 - 2016/11",
+                title: "蒙牛集团 - SAP实施顾问",
+                data: "负责市场营销、TPM贸易促销、渠道管理等方面的需求梳理与系统实施，推动在蒙牛总部及多个法人子公司的推广落地。"
+            },
+            {
+                date: "2011/05 - 2014/04",
+                title: "柯莱特信息技术咨询 - SAP开发组长",
+                data: "参与多个SAP CRM项目的开发与技术支持，具备扎实的技术背景。"
+            }
+        ];
+        
+        // 项目经历数据
+        const projectExperiences = [
+            {
+                date: "2024/11 - 2025/11",
+                title: "九牧商用LTC项目 - 营销数字化平台",
+                data: "项目经理&业务架构师，完成LTC系统规划与设计，推进12个大区500多家代理商的推广。"
+            },
+            {
+                date: "2024/01 - 2024/09",
+                title: "伊品生物营销数字化项目 - 营销数字化平台",
+                data: "项目经理&业务架构师，完成营销业务流程梳理，构建营销数据分析指标体系。"
+            },
+            {
+                date: "2023/11 - 2024/01",
+                title: "九牧商用数字化平台项目（二期）",
+                data: "项目经理&业务架构师，评估一期使用效果，完成平台优化与数据平台规划。"
+            },
+            {
+                date: "2023/03 - 2023/10",
+                title: "东电电子售后服务War Room项目",
+                data: "项目经理&业务架构师，梳理售后服务流程与指标体系，完成数据中台规划建设。"
+            },
+            {
+                date: "2022/11 - 2023/03",
+                title: "九牧商用数字化项目 - 营销数字化平台",
+                data: "项目经理&业务架构师，制定商用数字化平台整体框架，完成系统规划和建设。"
+            }
+        ];
+        
+        // 生成时间线内容
+        function generateTimeline() {
+            const timeline = document.querySelector('.timeline');
+            
+            // 添加工作经历标题
+            const workTitle = document.createElement('h3');
+            workTitle.style.color = "var(--highlight)";
+            workTitle.style.marginTop = "10px";
+            workTitle.style.marginBottom = "15px";
+            workTitle.innerHTML = '<i class="fas fa-briefcase"></i> 工作经历';
+            timeline.appendChild(workTitle);
+            
+            // 添加工作经历项目
+            workExperiences.forEach(exp => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-date">${exp.date}</div>
+                    <div class="timeline-title">${exp.title}</div>
+                    <div class="timeline-data">${exp.data}</div>
+                `;
+                timeline.appendChild(timelineItem);
+            });
+            
+            // 添加项目经历标题
+            const projectTitle = document.createElement('h3');
+            projectTitle.style.color = "var(--highlight)";
+            projectTitle.style.marginTop = "30px";
+            projectTitle.style.marginBottom = "15px";
+            projectTitle.innerHTML = '<i class="fas fa-project-diagram"></i> 精选项目';
+            timeline.appendChild(projectTitle);
+            
+            // 添加项目经历项目
+            projectExperiences.forEach(exp => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = 'timeline-item';
+                timelineItem.innerHTML = `
+                    <div class="timeline-date">${exp.date}</div>
+                    <div class="timeline-title">${exp.title}</div>
+                    <div class="timeline-data">${exp.data}</div>
+                `;
+                timeline.appendChild(timelineItem);
+            });
+        }
+        
+        // 检测AI聊天iframe是否加载成功
+        function checkIframeLoad() {
+            const iframe = document.getElementById('ai-chat-frame');
+            const placeholder = document.getElementById('ai-placeholder');
+            
+            // 尝试检测iframe是否加载成功
+            setTimeout(() => {
+                try {
+                    // 如果iframe可以访问其内容文档，说明加载成功
+                    if (iframe.contentDocument || iframe.contentWindow.document) {
+                        placeholder.style.display = 'none';
+                    } else {
+                        placeholder.style.display = 'flex';
+                    }
+                } catch (e) {
+                    // 跨域限制会抛出异常，但说明iframe已加载
+                    placeholder.style.display = 'none';
+                }
+            }, 2000);
+        }
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            createTechBackground();
+            generateTimeline();
+            checkIframeLoad();
+            
+            // 为技能卡片添加鼠标悬停效果
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 15px 30px rgba(0, 212, 255, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+                });
+            });
+            
+            // 为时间线项目添加动画
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const beforeDot = this.previousElementSibling;
+                    if (beforeDot && beforeDot.classList.contains('timeline-item')) {
+                        return;
+                    }
+                    
+                    const dot = document.createElement('div');
+                    dot.className = 'timeline-dot-effect';
+                    dot.style.position = 'absolute';
+                    dot.style.left = '-36px';
+                    dot.style.top = '25px';
+                    dot.style.width = '12px';
+                    dot.style.height = '12px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.backgroundColor = 'transparent';
+                    dot.style.boxShadow = '0 0 15px 5px var(--highlight)';
+                    dot.style.zIndex = '10';
+                    this.appendChild(dot);
+                    
+                    setTimeout(() => {
+                        if (this.contains(dot)) {
+                            this.removeChild(dot);
+                        }
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
