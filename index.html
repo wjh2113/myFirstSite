@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王俊 - AI产品经理 | 数字化转型专家</title>
+    <title>王俊 - AI产品经理 | 数智化转型解决方案专家</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;500;600&display=swap">
     <style>
@@ -16,6 +16,8 @@
             --gray: #f5f7fa;
             --dark-gray: #333;
             --highlight: #00d4ff;
+            --glow: rgba(0, 212, 255, 0.7);
+            --ai-purple: #9d4edd;
         }
         
         * {
@@ -41,33 +43,21 @@
             overflow: hidden;
         }
         
-        /* 左侧 - 个人信息和工作经历 */
+        /* 左侧 - 个人经历 */
         .left-panel {
-            width: 35%;
-            padding: 30px;
-            background-color: rgba(10, 26, 58, 0.9);
-            border-right: 1px solid rgba(42, 92, 170, 0.3);
+            width: 50%;
+            padding: 40px;
             z-index: 2;
             overflow-y: auto;
         }
         
-        /* 中间 - 业务能力展示 */
-        .center-panel {
-            width: 35%;
-            padding: 30px;
-            z-index: 2;
-            overflow-y: auto;
-        }
-        
-        /* 右侧 - AI对话 */
+        /* 右侧 - 业务能力展示 */
         .right-panel {
-            width: 30%;
-            padding: 30px;
-            background-color: rgba(10, 26, 58, 0.85);
-            border-left: 1px solid rgba(42, 92, 170, 0.3);
+            width: 50%;
+            padding: 40px;
             z-index: 2;
-            display: flex;
-            flex-direction: column;
+            overflow-y: auto;
+            border-left: 1px solid rgba(42, 92, 170, 0.3);
         }
         
         /* 科技背景元素 */
@@ -104,10 +94,31 @@
             animation: float 20s infinite linear;
         }
         
+        .ai-floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--ai-purple) 0%, transparent 70%);
+            opacity: 0.15;
+            animation: float 15s infinite linear reverse;
+        }
+        
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(180deg); }
             100% { transform: translateY(0px) rotate(360deg); }
+        }
+        
+        .pulse-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+            100% { transform: scale(0.8); opacity: 0.5; }
         }
         
         /* 标题样式 */
@@ -131,34 +142,60 @@
             border-radius: 2px;
         }
         
+        .ai-title {
+            background: linear-gradient(to right, var(--highlight), var(--ai-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
         /* 个人信息区域 */
         .profile-header {
             display: flex;
             align-items: center;
             margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(26, 58, 110, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(42, 92, 170, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--highlight));
         }
         
         .avatar {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-blue), var(--highlight));
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 20px;
-            border: 3px solid var(--white);
-            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            border: 2px solid var(--white);
+            box-shadow: 0 0 15px var(--glow);
+            position: relative;
+            z-index: 2;
         }
         
         .avatar i {
-            font-size: 50px;
+            font-size: 40px;
             color: var(--white);
         }
         
         .profile-info h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2.2rem;
+            font-size: 1.9rem;
             margin-bottom: 5px;
             background: linear-gradient(to right, var(--white), var(--highlight));
             -webkit-background-clip: text;
@@ -167,16 +204,166 @@
         }
         
         .profile-info .title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--highlight);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .profile-info p {
+            color: #ccc;
+            font-size: 0.9rem;
+            max-width: 500px;
+        }
+        
+        /* 个人信息卡片 - 缩小版本 */
+        .info-card {
+            background-color: rgba(26, 58, 110, 0.3);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(42, 92, 170, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--highlight));
+        }
+        
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+        }
+        
+        .info-title i {
+            margin-right: 8px;
+            color: var(--highlight);
+            font-size: 1rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            background: rgba(42, 92, 170, 0.2);
+            border-radius: 6px;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+        
+        .info-item:hover {
+            background: rgba(42, 92, 170, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .info-item i {
+            margin-right: 8px;
+            color: var(--highlight);
+            font-size: 1rem;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .info-text {
+            font-size: 0.85rem;
+            color: #ccc;
+            line-height: 1.4;
+        }
+        
+        /* 教育经历合并项 */
+        .education-item {
+            grid-column: 1 / span 2;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background: rgba(42, 92, 170, 0.2);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .education-item:hover {
+            background: rgba(42, 92, 170, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .education-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .education-line:last-child {
+            margin-bottom: 0;
+        }
+        
+        .education-line i {
+            margin-right: 10px;
+            color: var(--highlight);
+            font-size: 1rem;
+            min-width: 20px;
+        }
+        
+        .education-text {
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+        
+        /* 证书合并项 */
+        .certificates-item {
+            grid-column: 1 / span 2;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(42, 92, 170, 0.2);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .certificates-item:hover {
+            background: rgba(42, 92, 170, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .certificates-item i {
+            margin-right: 10px;
+            color: var(--highlight);
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+        
+        .certificates-text {
+            font-size: 0.85rem;
+            color: #ccc;
         }
         
         /* 时间线样式 */
         .timeline {
             position: relative;
-            padding-left: 30px;
-            margin-top: 20px;
+            padding-left: 25px;
+            margin-top: 15px;
         }
         
         .timeline:before {
@@ -191,37 +378,64 @@
         
         .timeline-item {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 20px;
             background-color: rgba(26, 58, 110, 0.3);
             border-radius: 10px;
             border-left: 4px solid var(--accent-blue);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .ai-timeline-item {
+            border-left: 4px solid var(--ai-purple);
         }
         
         .timeline-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
             border-left-color: var(--highlight);
+            background-color: rgba(26, 58, 110, 0.5);
+        }
+        
+        .ai-timeline-item:hover {
+            border-left-color: var(--ai-purple);
         }
         
         .timeline-item:before {
             content: '';
             position: absolute;
-            left: -36px;
+            left: -33px;
             top: 25px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background-color: var(--highlight);
-            box-shadow: 0 0 10px var(--highlight);
+            box-shadow: 0 0 8px var(--highlight);
+            z-index: 2;
+        }
+        
+        .ai-timeline-item:before {
+            background-color: var(--ai-purple);
+            box-shadow: 0 0 8px var(--ai-purple);
         }
         
         .timeline-date {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--highlight);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ai-date {
+            color: var(--ai-purple);
+        }
+        
+        .timeline-date i {
+            margin-right: 6px;
+            font-size: 0.9rem;
         }
         
         .timeline-title {
@@ -232,55 +446,167 @@
         }
         
         .timeline-data {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #ccc;
+            line-height: 1.6;
         }
         
         /* 核心能力卡片 */
         .skill-card {
             background-color: rgba(26, 58, 110, 0.3);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
             border: 1px solid rgba(42, 92, 170, 0.3);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-skill-card {
+            border: 1px solid rgba(157, 78, 221, 0.5);
         }
         
         .skill-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: var(--highlight);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ai-skill-card:hover {
+            border-color: var(--ai-purple);
+            box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+        }
+        
+        .skill-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--highlight));
+        }
+        
+        .ai-skill-card:before {
+            background: linear-gradient(to bottom, var(--ai-purple), var(--highlight));
         }
         
         .skill-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .skill-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             background: linear-gradient(135deg, var(--accent-blue), var(--highlight));
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
+            margin-right: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ai-skill-icon {
+            background: linear-gradient(135deg, var(--ai-purple), var(--highlight));
         }
         
         .skill-icon i {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--white);
         }
         
         .skill-title {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
         }
         
         .skill-content {
             color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        /* 技能与特长卡片 */
+        .skills-card {
+            background-color: rgba(26, 58, 110, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(42, 92, 170, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skills-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-blue), var(--highlight));
+        }
+        
+        .skills-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-category {
+            margin-bottom: 25px;
+        }
+        
+        .skill-category:last-child {
+            margin-bottom: 0;
+        }
+        
+        .skill-category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--highlight);
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-category-title i {
+            margin-right: 10px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background-color: rgba(42, 92, 170, 0.3);
+            color: var(--light-blue);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(42, 92, 170, 0.5);
+            transition: all 0.2s;
+        }
+        
+        .ai-skill-item {
+            background-color: rgba(157, 78, 221, 0.3);
+            border: 1px solid rgba(157, 78, 221, 0.5);
+        }
+        
+        .skill-item:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: var(--highlight);
+            transform: scale(1.05);
+        }
+        
+        .ai-skill-item:hover {
+            background-color: rgba(157, 78, 221, 0.4);
+            border-color: var(--ai-purple);
         }
         
         .skill-tags {
@@ -292,117 +618,211 @@
         .skill-tag {
             background-color: rgba(42, 92, 170, 0.3);
             color: var(--light-blue);
-            padding: 5px 12px;
+            padding: 6px 15px;
             border-radius: 20px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(42, 92, 170, 0.5);
-        }
-        
-        /* AI对话区域 */
-        .ai-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        
-        .ai-header h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
+            margin-right: 10px;
             margin-bottom: 10px;
-            color: var(--white);
-        }
-        
-        .ai-header p {
-            color: #ccc;
-            font-size: 0.95rem;
-        }
-        
-        .ai-container {
-            flex-grow: 1;
-            background-color: rgba(10, 20, 40, 0.7);
-            border-radius: 10px;
-            overflow: hidden;
+            font-size: 0.9rem;
             border: 1px solid rgba(42, 92, 170, 0.5);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
         }
         
-        .ai-placeholder {
+        .ai-skill-tag {
+            background-color: rgba(157, 78, 221, 0.3);
+            border: 1px solid rgba(157, 78, 221, 0.5);
+        }
+        
+        .skill-tag:hover {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: var(--highlight);
+            transform: scale(1.05);
+        }
+        
+        .ai-skill-tag:hover {
+            background-color: rgba(157, 78, 221, 0.4);
+            border-color: var(--ai-purple);
+        }
+        
+        /* 右上角悬浮AI助手对话按钮 */
+        .ai-button-container {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 100;
             display: flex;
             flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .ai-button {
+            display: flex;
             align-items: center;
-            justify-content: center;
-            height: 100%;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .ai-placeholder i {
-            font-size: 3rem;
-            color: var(--highlight);
-            margin-bottom: 20px;
-        }
-        
-        .ai-placeholder h4 {
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--ai-purple), var(--highlight));
             color: var(--white);
-        }
-        
-        .ai-placeholder p {
-            color: #ccc;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-        
-        .ai-iframe {
-            width: 100%;
-            height: 100%;
             border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Exo 2', sans-serif;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .ai-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(157, 78, 221, 0.35);
+            background: linear-gradient(135deg, var(--highlight), var(--ai-purple));
+            padding-right: 28px;
+            padding-left: 28px;
+        }
+        
+        .ai-button i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .ai-button-text {
+            color: var(--white);
+            font-size: 0.8rem;
+            background: rgba(10, 26, 58, 0.9);
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-top: 6px;
+            text-align: center;
+            max-width: 200px;
+            display: none;
+            border: 1px solid rgba(42, 92, 170, 0.5);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .ai-button:hover + .ai-button-text,
+        .ai-button-text:hover {
+            display: block;
+        }
+        
+        .ai-pulse {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ff4d4d;
+            box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+            animation: ai-pulse 2s infinite;
+        }
+        
+        @keyframes ai-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 77, 77, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 77, 77, 0);
+            }
         }
         
         /* 响应式设计 */
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
             .container {
                 flex-direction: column;
                 height: auto;
             }
             
-            .left-panel, .center-panel, .right-panel {
+            .left-panel, .right-panel {
                 width: 100%;
                 height: auto;
             }
             
-            .right-panel {
-                height: 700px;
+            .ai-button-container {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .ai-button {
+                padding: 10px 20px;
+                font-size: 0.95rem;
+            }
+            
+            .ai-button i {
+                font-size: 1.1rem;
+                margin-right: 8px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .education-item, .certificates-item {
+                grid-column: 1;
             }
         }
         
-        /* 底部信息 */
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(42, 92, 170, 0.3);
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            color: #ccc;
-        }
-        
-        .contact-item i {
-            margin-right: 8px;
-            color: var(--highlight);
+        @media (max-width: 768px) {
+            .ai-button span {
+                display: none;
+            }
+            
+            .ai-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .ai-button i {
+                margin-right: 0;
+                font-size: 1.3rem;
+            }
+            
+            .ai-button-text {
+                display: none !important;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .avatar {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .left-panel, .right-panel {
+                padding: 25px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 科技背景元素 -->
     <div class="tech-bg" id="tech-bg"></div>
     
+    <!-- 右上角悬浮AI助手对话按钮 -->
+    <div class="ai-button-container">
+        <a href="http://111.228.6.222:806/chat/yj6Ma9XZfQLCRzni" target="_blank" class="ai-button">
+            <div class="ai-pulse"></div>
+            <i class="fas fa-robot"></i>
+            <span>与我的AI助手对话</span>
+        </a>
+        <div class="ai-button-text">深入了解我的专业能力与项目经验</div>
+    </div>
+    
+    <!-- 主容器 -->
     <div class="container">
         <!-- 左侧面板：个人信息和工作经历 -->
         <div class="left-panel">
@@ -413,36 +833,69 @@
                 </div>
                 <div class="profile-info">
                     <h1>王俊</h1>
-                    <div class="title">AI产品经理 | 数字化转型专家</div>
-                    <p>14年+数字化转型与营销解决方案经验</p>
+                    <div class="title">AI产品经理 | 数智化转型解决方案专家</div>
+                    <p>15年+数智化转型与营销解决方案经验，具备扎实的技术背景、成熟的产品思维、系统化的项目管理能力及丰富的售前能力。未来逐渐转向售前解决方案专家，数字化咨询专家，深耕行业。</p>
+                </div>
+            </div>
+            
+            <!-- 个人信息卡片 - 缩小版本 -->
+            <div class="info-card">
+                <div class="info-title">
+                    <i class="fas fa-id-card"></i> 个人信息
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="info-text">17701367566（微信同号）</div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="info-text">sapwangjun@hotmail.com</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-line">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div class="education-text">武汉大学 MBA (2022-2025)</div>
+                        </div>
+                        <div class="education-line">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div class="education-text">河南工业大学 计算机科学与技术 (2007-2011)</div>
+                        </div>
+                    </div>
+                    <div class="certificates-item">
+                        <i class="fas fa-certificate"></i>
+                        <div class="certificates-text">PMP证书、SAP PA认证、TOGAF企业架构师认证</div>
+                    </div>
                 </div>
             </div>
             
             <!-- 工作经历时间线 -->
             <h2 class="section-title">工作经历</h2>
-            <div class="timeline">
+            <div class="timeline" id="timeline">
                 <!-- 时间线项目将动态生成 -->
             </div>
         </div>
         
-        <!-- 中间面板：业务能力展示 -->
-        <div class="center-panel">
+        <!-- 右侧面板：业务能力展示 -->
+        <div class="right-panel">
             <h2 class="section-title">核心优势</h2>
-            <div class="skill-card">
+            
+            <div class="skill-card ai-skill-card">
                 <div class="skill-header">
-                    <div class="skill-icon">
+                    <div class="skill-icon ai-skill-icon">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <div class="skill-title">AI+数字化解决方案</div>
+                    <div class="skill-title ai-title">AI大模型产品设计能力</div>
                 </div>
                 <div class="skill-content">
-                    14年+数字化转型咨询、系统实施及项目管理经验，精通售前解决方案设计与客户高层汇报。具备从业务洞察到技术落地的全流程能力。
+                    对人工智能、AIGC和大模型产品解决方案有深入理解，具备基于行业经验叠加AI能力构建数智化解决方案的能力。具备企业AI大模型项目设计与建设的经验，参与某企业AI智能客服平台的设计，通过3个月的运行及上线后对知识库和模型进行调优，将智能问答准确率提升至85%。
                 </div>
                 <div class="skill-tags">
-                    <span class="skill-tag">AI产品规划</span>
-                    <span class="skill-tag">数字化转型</span>
-                    <span class="skill-tag">售前解决方案</span>
-                    <span class="skill-tag">项目管理</span>
+                    <span class="skill-tag ai-skill-tag">AI大模型</span>
+                    <span class="skill-tag ai-skill-tag">AIGC</span>
+                    <span class="skill-tag ai-skill-tag">智能客服平台</span>
+                    <span class="skill-tag ai-skill-tag">智能问答</span>
+                    <span class="skill-tag ai-skill-tag">知识库构建</span>
                 </div>
             </div>
             
@@ -451,16 +904,17 @@
                     <div class="skill-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="skill-title">行业洞察与整合</div>
+                    <div class="skill-title">全岗位实战经验</div>
                 </div>
                 <div class="skill-content">
-                    熟悉零售、制造、高科技等行业营销数据产品解决方案，具备多行业跨域整合能力；擅长基于客户业务场景完成整体业务蓝图设计。
+                    15年数智化转型咨询、数字化产品设计与落地、项目推进与管理经验，历经技术开发、产品经理、项目管理及售前专家全岗位实战历练，具备扎实的技术背景、成熟的产品思维、系统化的项目管理能力及丰富的售前能力。
                 </div>
                 <div class="skill-tags">
-                    <span class="skill-tag">零售行业</span>
-                    <span class="skill-tag">制造业</span>
-                    <span class="skill-tag">高科技</span>
-                    <span class="skill-tag">跨域整合</span>
+                    <span class="skill-tag">技术开发</span>
+                    <span class="skill-tag">产品经理</span>
+                    <span class="skill-tag">项目管理</span>
+                    <span class="skill-tag">售前专家</span>
+                    <span class="skill-tag">数智化转型</span>
                 </div>
             </div>
             
@@ -469,16 +923,18 @@
                     <div class="skill-icon">
                         <i class="fas fa-cogs"></i>
                     </div>
-                    <div class="skill-title">技术架构能力</div>
+                    <div class="skill-title">技术架构与实施能力</div>
                 </div>
                 <div class="skill-content">
-                    熟悉SAP S4、SAP CRM、自研平台设计与落地、Java技术栈；具备TOGAF企业架构设计能力，熟悉Archmate等建模工具。
+                    熟悉SAP S4、SAP CRM、自研平台设计与落地、Java技术栈；具备TOGAF企业架构设计能力，熟悉Archmate等建模工具。精通企业数据中台、营销分析平台设计与落地。
                 </div>
                 <div class="skill-tags">
                     <span class="skill-tag">SAP架构</span>
-                    <span class="skill-tag">TOGAF</span>
+                    <span class="skill-tag">TOGAF认证</span>
                     <span class="skill-tag">Java技术栈</span>
                     <span class="skill-tag">企业架构</span>
+                    <span class="skill-tag">数据中台</span>
+                    <span class="skill-tag">营销数字化</span>
                 </div>
             </div>
             
@@ -488,63 +944,107 @@
                     <div class="skill-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <div class="skill-title">项目交付与客户</div>
+                    <div class="skill-title">卓越的项目交付与客户合作</div>
                 </div>
                 <div class="skill-content">
-                    <p>主导或参与10+个大型数字化项目的售前工作，成功交付11个项目，覆盖零售、快消、制造、汽车、医疗、高科技等多个行业。</p>
-                    <p style="margin-top: 10px;"><strong>合作客户：</strong>九牧、广汽丰田、阳光电源、紫光集团、蒙牛、迈瑞等知名企业。</p>
+                    <p>主导或参与10+个大型数智化项目的售前工作，成功交付11个项目；作为项目核心负责人，主导多个大型企业营销数智化蓝图规划、数据平台搭建与系统实施。</p>
+                    <p style="margin-top: 15px;"><strong>合作客户：</strong>九牧、广汽丰田、阳光电源、紫光集团、蒙牛、迈瑞、长江存储、广汽传祺、中国建筑、东电电子、武汉中百集团等各领域头部企业。</p>
+                </div>
+                <div class="skill-tags">
+                    <span class="skill-tag">项目交付</span>
+                    <span class="skill-tag">客户合作</span>
+                    <span class="skill-tag">售前支持</span>
+                    <span class="skill-tag">蓝图规划</span>
+                    <span class="skill-tag">系统实施</span>
                 </div>
             </div>
             
-            <!-- 联系信息 -->
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span>17701367566</span>
+            <!-- 技能与特长 -->
+            <h2 class="section-title" style="margin-top: 40px;">技能与特长</h2>
+            <div class="skills-card">
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-analytics"></i> 业务分析及产品设计能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">业务蓝图设计</div>
+                        <div class="skill-item">解决方案框架构建</div>
+                        <div class="skill-item">需求分析</div>
+                        <div class="skill-item">产品规划</div>
+                    </div>
                 </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>sapwangjun@hotmail.com</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>河南信阳</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-certificate"></i>
-                    <span>PMP/SAP PA认证</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 右侧面板：AI对话 -->
-        <div class="right-panel">
-            <div class="ai-header">
-                <h3><i class="fas fa-robot"></i> AI助手对话</h3>
-                <p>与我交流，了解我的专业能力与项目经验</p>
-            </div>
-            
-            <div class="ai-container">
-                <!-- AI对话iframe -->
-                <iframe 
-                    src="http://111.228.6.222/chatbot/Q3vS5szuKijgsyen"
-                    class="ai-iframe"
-                    frameborder="0"
-                    allow="microphone"
-                    id="ai-chat-frame">
-                </iframe>
                 
-                <!-- 如果iframe无法加载，显示备用内容 -->
-                <div class="ai-placeholder" id="ai-placeholder">
-                    <i class="fas fa-robot"></i>
-                    <h4>AI对话助手</h4>
-                    <p>在这里可以与我进行对话，了解我的专业技能和项目经验。</p>
-                    <p>如果对话界面未能正常加载，请检查网络连接或确保本地服务器正在运行。</p>
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-robot"></i> AI大模型产品设计能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item ai-skill-item">AI大模型解决方案</div>
+                        <div class="skill-item ai-skill-item">AIGC应用</div>
+                        <div class="skill-item ai-skill-item">智能客服平台设计</div>
+                        <div class="skill-item ai-skill-item">知识库构建</div>
+                        <div class="skill-item ai-skill-item">模型调优</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-tasks"></i> 项目管理能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">PMP认证</div>
+                        <div class="skill-item">项目全流程管理</div>
+                        <div class="skill-item">售前到交付管理</div>
+                        <div class="skill-item">资源协调</div>
+                        <div class="skill-item">风险管理</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-chart-bar"></i> 营销数字化能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">营销业务架构设计</div>
+                        <div class="skill-item">SAP CRM实施</div>
+                        <div class="skill-item">会员管理</div>
+                        <div class="skill-item">精准营销</div>
+                        <div class="skill-item">TPM贸易促销管理</div>
+                        <div class="skill-item">多行业营销数字化平台搭建</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-bullhorn"></i> 售前与解决方案能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">客户业务调研</div>
+                        <div class="skill-item">高层汇报</div>
+                        <div class="skill-item">方案设计</div>
+                        <div class="skill-item">投标支持</div>
+                        <div class="skill-item">POC实施</div>
+                        <div class="skill-item">客户开发与销售协同</div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <div class="skill-category-title">
+                        <i class="fas fa-code"></i> 技术专业能力
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">SAP S4/CRM</div>
+                        <div class="skill-item">自研平台设计与落地</div>
+                        <div class="skill-item">Java技术栈</div>
+                        <div class="skill-item">TOGAF企业架构设计</div>
+                        <div class="skill-item">Archmate建模工具</div>
+                        <div class="skill-item">数据中台设计</div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script>
         // 生成科技背景网格和浮动元素
         function createTechBackground() {
@@ -564,7 +1064,7 @@
             }
             
             // 创建浮动元素
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 10; i++) {
                 const floatingElement = document.createElement('div');
                 floatingElement.className = 'floating-element';
                 const size = Math.random() * 100 + 20;
@@ -576,70 +1076,112 @@
                 floatingElement.style.animationDelay = `${Math.random() * 5}s`;
                 techBg.appendChild(floatingElement);
             }
+            
+            // 创建AI浮动元素
+            for (let i = 0; i < 8; i++) {
+                const aiFloatingElement = document.createElement('div');
+                aiFloatingElement.className = 'ai-floating-element';
+                const size = Math.random() * 80 + 15;
+                aiFloatingElement.style.width = `${size}px`;
+                aiFloatingElement.style.height = `${size}px`;
+                aiFloatingElement.style.left = `${Math.random() * 100}%`;
+                aiFloatingElement.style.top = `${Math.random() * 100}%`;
+                aiFloatingElement.style.animationDuration = `${Math.random() * 15 + 10}s`;
+                aiFloatingElement.style.animationDelay = `${Math.random() * 3}s`;
+                techBg.appendChild(aiFloatingElement);
+            }
+            
+            // 创建脉动圆环
+            for (let i = 0; i < 8; i++) {
+                const pulseCircle = document.createElement('div');
+                pulseCircle.className = 'pulse-circle';
+                const size = Math.random() * 200 + 50;
+                pulseCircle.style.width = `${size}px`;
+                pulseCircle.style.height = `${size}px`;
+                pulseCircle.style.left = `${Math.random() * 100}%`;
+                pulseCircle.style.top = `${Math.random() * 100}%`;
+                pulseCircle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                pulseCircle.style.animationDelay = `${Math.random() * 3}s`;
+                techBg.appendChild(pulseCircle);
+            }
         }
         
         // 工作经历数据
         const workExperiences = [
             {
                 date: "2019/07 - 2025/11",
-                title: "普华永道 - 数字化转型咨询高级经理",
-                data: "负责营销数字化项目的售前支持与解决方案设计，参与5个项目的售前工作，并成功交付11个项目；主导多个大型企业营销数字化蓝图规划、数据平台搭建与系统实施。"
+                title: "普华永道 - 数智化转型咨询高级经理",
+                data: "负责营销数智化项目的售前支持与解决方案设计，参与5个项目的售前工作，并成功交付11个项目；作为项目核心负责人，主导多个大型企业营销数智化蓝图规划、数据平台搭建与系统实施，具备较强的客户高层沟通与汇报能力。",
+                icon: "fas fa-building"
             },
             {
                 date: "2016/11 - 2019/06",
-                title: "印孚瑟斯管理咨询 - 营销数字化咨询顾问",
-                data: "参与营销项目实施与售前支持，具备跨行业营销解决方案设计能力。"
+                title: "印孚瑟斯管理咨询（后转入徳世普安） - 营销数字化咨询顾问",
+                data: "参与营销项目实施与售前支持，具备跨行业营销解决方案设计能力。负责客户业务调研、方案设计、投标支持等全流程工作。",
+                icon: "fas fa-chart-pie"
             },
             {
                 date: "2014/05 - 2016/11",
-                title: "蒙牛集团 - SAP实施顾问",
-                data: "负责市场营销、TPM贸易促销、渠道管理等方面的需求梳理与系统实施，推动在蒙牛总部及多个法人子公司的推广落地。"
+                title: "内蒙古蒙牛乳业集团 - SAP实施顾问",
+                data: "负责市场营销、TPM贸易促销、渠道管理等方面的需求梳理与系统实施，推动在蒙牛总部及多个法人子公司的推广落地。",
+                icon: "fas fa-industry"
             },
             {
                 date: "2011/05 - 2014/04",
-                title: "柯莱特信息技术咨询 - SAP开发组长",
-                data: "参与多个SAP CRM项目的开发与技术支持，具备扎实的技术背景。"
+                title: "柯莱特信息技术咨询有限公司 - SAP开发组长",
+                data: "参与多个SAP CRM项目的开发与技术支持，具备扎实的技术背景。负责开发团队管理，指导外部开发顾问按照规范进行开发。",
+                icon: "fas fa-code"
             }
         ];
         
-        // 项目经历数据
+        // 项目经历数据（基于最新简历，精选重要项目）
         const projectExperiences = [
             {
                 date: "2024/11 - 2025/11",
-                title: "九牧商用LTC项目 - 营销数字化平台",
-                data: "项目经理&业务架构师，完成LTC系统规划与设计，推进12个大区500多家代理商的推广。"
+                title: "九牧商用LTC项目 - 营销数智化平台",
+                data: "项目经理&业务架构师。指导并推进九牧商用LTC业务咨询工作，基于九牧厨卫商用业务模式，按行业、区域进行业务梳理，覆盖5大行业、8大业务场景。推进LTC系统建设，完成6大功能板块，79个功能菜单，14个对接系统和52个系统接口。完成30场用户培训，覆盖全国12个大区、200+代理商。",
+                icon: "fas fa-project-diagram",
+                isAI: false
+            },
+            {
+                date: "2023/03 - 2025/03",
+                title: "东电电子售后服务War Room项目 - AI智能客服平台",
+                data: "业务分析及产品经理。组织并推进售后服务业务咨询，完成19场业务调研，总结89个现状问题。参与并推进智能客服平台的建设，基于AI大模型开发智能客服智能体，完成智能问答功能的测试和上线。通过3个月的运行及上线后对知识库和模型进行调优，将智能问答准确率提升至85%。",
+                icon: "fas fa-robot",
+                isAI: true
             },
             {
                 date: "2024/01 - 2024/09",
-                title: "伊品生物营销数字化项目 - 营销数字化平台",
-                data: "项目经理&业务架构师，完成营销业务流程梳理，构建营销数据分析指标体系。"
+                title: "伊品生物营销数字化项目 - 营销数智化平台",
+                data: "项目经理&业务架构师。完成营销业务流程（MTL/LTC/ITR）梳理，构建营销数据分析指标体系。基于业务流程，完成数智化平台的规划与建设。",
+                icon: "fas fa-chart-line",
+                isAI: false
             },
             {
-                date: "2023/11 - 2024/01",
-                title: "九牧商用数字化平台项目（二期）",
-                data: "项目经理&业务架构师，评估一期使用效果，完成平台优化与数据平台规划。"
+                date: "2020/10 - 2021/07",
+                title: "阳光电源售后服务数智化转型项目 - 全球售后服务平台",
+                data: "项目经理。组织并推进阳光全球售后服务蓝图设计，完成15场业务调研，涉及阳光电源全球五大区的售后服务业务梳理。组织并推进阳光电源全球售后服务平台的建设，包含基础数据管理、服务过程管理、备件库存管理、合同订单管理等一级功能模块。",
+                icon: "fas fa-globe",
+                isAI: false
             },
             {
-                date: "2023/03 - 2023/10",
-                title: "东电电子售后服务War Room项目",
-                data: "项目经理&业务架构师，梳理售后服务流程与指标体系，完成数据中台规划建设。"
-            },
-            {
-                date: "2022/11 - 2023/03",
-                title: "九牧商用数字化项目 - 营销数字化平台",
-                data: "项目经理&业务架构师，制定商用数字化平台整体框架，完成系统规划和建设。"
+                date: "2019/02 - 2019/07",
+                title: "武汉中百集团 - 会员及营销平台建设项目",
+                data: "营销模块业务顾问。参与并推进武汉中百会员管理及市场营销业务梳理，包括会员体系梳理和会员营销。参与并推进武汉中百会员管理及市场营销系统建设，基于业务蓝图设计完成系统功能设计。",
+                icon: "fas fa-shopping-cart",
+                isAI: false
             }
         ];
         
         // 生成时间线内容
         function generateTimeline() {
-            const timeline = document.querySelector('.timeline');
+            const timeline = document.getElementById('timeline');
             
             // 添加工作经历标题
             const workTitle = document.createElement('h3');
             workTitle.style.color = "var(--highlight)";
             workTitle.style.marginTop = "10px";
-            workTitle.style.marginBottom = "15px";
+            workTitle.style.marginBottom = "20px";
             workTitle.innerHTML = '<i class="fas fa-briefcase"></i> 工作经历';
             timeline.appendChild(workTitle);
             
@@ -648,7 +1190,7 @@
                 const timelineItem = document.createElement('div');
                 timelineItem.className = 'timeline-item';
                 timelineItem.innerHTML = `
-                    <div class="timeline-date">${exp.date}</div>
+                    <div class="timeline-date"><i class="${exp.icon}"></i> ${exp.date}</div>
                     <div class="timeline-title">${exp.title}</div>
                     <div class="timeline-data">${exp.data}</div>
                 `;
@@ -658,17 +1200,17 @@
             // 添加项目经历标题
             const projectTitle = document.createElement('h3');
             projectTitle.style.color = "var(--highlight)";
-            projectTitle.style.marginTop = "30px";
-            projectTitle.style.marginBottom = "15px";
-            projectTitle.innerHTML = '<i class="fas fa-project-diagram"></i> 精选项目';
+            projectTitle.style.marginTop = "40px";
+            projectTitle.style.marginBottom = "20px";
+            projectTitle.innerHTML = '<i class="fas fa-tasks"></i> 精选项目（共23个项目）';
             timeline.appendChild(projectTitle);
             
             // 添加项目经历项目
             projectExperiences.forEach(exp => {
                 const timelineItem = document.createElement('div');
-                timelineItem.className = 'timeline-item';
+                timelineItem.className = `timeline-item ${exp.isAI ? 'ai-timeline-item' : ''}`;
                 timelineItem.innerHTML = `
-                    <div class="timeline-date">${exp.date}</div>
+                    <div class="timeline-date ${exp.isAI ? 'ai-date' : ''}"><i class="${exp.icon}"></i> ${exp.date}</div>
                     <div class="timeline-title">${exp.title}</div>
                     <div class="timeline-data">${exp.data}</div>
                 `;
@@ -676,64 +1218,45 @@
             });
         }
         
-        // 检测AI聊天iframe是否加载成功
-        function checkIframeLoad() {
-            const iframe = document.getElementById('ai-chat-frame');
-            const placeholder = document.getElementById('ai-placeholder');
-            
-            // 尝试检测iframe是否加载成功
-            setTimeout(() => {
-                try {
-                    // 如果iframe可以访问其内容文档，说明加载成功
-                    if (iframe.contentDocument || iframe.contentWindow.document) {
-                        placeholder.style.display = 'none';
-                    } else {
-                        placeholder.style.display = 'flex';
-                    }
-                } catch (e) {
-                    // 跨域限制会抛出异常，但说明iframe已加载
-                    placeholder.style.display = 'none';
-                }
-            }, 2000);
-        }
-        
         // 页面加载完成后执行
         document.addEventListener('DOMContentLoaded', function() {
             createTechBackground();
             generateTimeline();
-            checkIframeLoad();
-            
-            // 为技能卡片添加鼠标悬停效果
-            const skillCards = document.querySelectorAll('.skill-card');
-            skillCards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.boxShadow = '0 15px 30px rgba(0, 212, 255, 0.2)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-                });
-            });
             
             // 为时间线项目添加动画
             const timelineItems = document.querySelectorAll('.timeline-item');
-            timelineItems.forEach(item => {
+            timelineItems.forEach((item, index) => {
+                // 初始设置透明度为0，准备动画
+                item.style.opacity = '0';
+                item.style.transform = 'translateX(-20px)';
+                
+                // 延迟显示动画
+                setTimeout(() => {
+                    item.style.transition = 'all 0.5s ease';
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }, 100 + index * 100);
+                
+                // 鼠标悬停效果
                 item.addEventListener('mouseenter', function() {
                     const beforeDot = this.previousElementSibling;
                     if (beforeDot && beforeDot.classList.contains('timeline-item')) {
                         return;
                     }
                     
+                    const isAIItem = this.classList.contains('ai-timeline-item');
+                    const glowColor = isAIItem ? 'var(--ai-purple)' : 'var(--highlight)';
+                    
                     const dot = document.createElement('div');
                     dot.className = 'timeline-dot-effect';
                     dot.style.position = 'absolute';
-                    dot.style.left = '-36px';
+                    dot.style.left = '-33px';
                     dot.style.top = '25px';
                     dot.style.width = '12px';
                     dot.style.height = '12px';
                     dot.style.borderRadius = '50%';
                     dot.style.backgroundColor = 'transparent';
-                    dot.style.boxShadow = '0 0 15px 5px var(--highlight)';
+                    dot.style.boxShadow = `0 0 15px 6px ${glowColor}`;
                     dot.style.zIndex = '10';
                     this.appendChild(dot);
                     
@@ -743,6 +1266,46 @@
                         }
                     }, 1000);
                 });
+            });
+            
+            // 为技能卡片添加动画
+            const skillCards = document.querySelectorAll('.skill-card, .skills-card, .info-card');
+            skillCards.forEach((card, index) => {
+                // 初始设置透明度为0，准备动画
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                // 延迟显示动画
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + index * 100);
+            });
+            
+            // 为AI按钮添加滚动效果
+            const aiButton = document.querySelector('.ai-button');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    aiButton.style.transform = 'translateY(-3px) scale(0.95)';
+                    aiButton.style.opacity = '0.9';
+                } else {
+                    aiButton.style.transform = 'translateY(-3px)';
+                    aiButton.style.opacity = '1';
+                }
+            });
+            
+            // AI按钮悬停效果
+            aiButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px) scale(1.05)';
+            });
+            
+            aiButton.addEventListener('mouseleave', function() {
+                if (window.scrollY > 100) {
+                    this.style.transform = 'translateY(-3px) scale(0.95)';
+                } else {
+                    this.style.transform = 'translateY(-3px)';
+                }
             });
         });
     </script>
